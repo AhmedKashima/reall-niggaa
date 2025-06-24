@@ -1,0 +1,110 @@
+# services:
+#   backend:
+#     build: ./backend
+#     volumes:
+#       - ./backend:/app
+#     ports:
+#       - "8000:8000"
+#     environment:
+#       - DEBUG=1
+
+#   frontend:
+#     build: ./frontend
+#     ports:
+#       - "3000:80"  # Nginx runs on port 80
+#     depends_on:
+#       - backend
+
+# version: "3.9"  # Optional but recommended for compatibility
+# services:
+#   backend:
+#     build: ./backend
+#     volumes:
+#       - ./backend:/app
+#     ports:
+#       - "8000:8000"
+
+#   frontend:
+#     build: ./frontend
+#     volumes:
+#       - ./frontend:/app
+#       - /app/node_modules
+#     ports:
+#       - "3001:3000"
+#     environment:
+#       - CHOKIDAR_USEPOLLING=true
+
+
+
+
+# version: "3.9"
+
+# services:
+#   backend:
+#     build: ./backend
+#     volumes:
+#       - ./backend:/app
+#     ports:
+#       - "8000:8000"
+#     networks:
+#       - customnet
+
+#   frontend:
+#     build: ./frontend
+#     volumes:
+#       - ./frontend:/app
+#       - /app/node_modules
+#     ports:
+#       - "3001:3000"
+#     environment:
+#       - CHOKIDAR_USEPOLLING=true 
+#     networks:
+#       - customnet
+
+# networks:
+#   customnet:
+#     driver: bridge
+#     ipam:
+#       config:
+#         - subnet: 192.168.128.0/24
+
+
+
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    networks:
+      customnet:
+        aliases:
+          - backend-host  # Added alias for consistent naming
+    environment:
+      - DEBUG=True
+      - CHOKIDAR_USEPOLLING=true 
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"  # Changed to standard port mapping
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_API_URL=http://backend:8000  # Using service name for internal communication
+    networks:
+      - customnet
+    depends_on:
+      - backend
+
+networks:
+  customnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.128.0/24
