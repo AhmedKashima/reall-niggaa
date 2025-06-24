@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/reall-niggaa/static/css/main.32e904b6.css",
+    "main.js": "/reall-niggaa/static/js/main.e98a32b2.js",
+    "static/js/488.0bb960fd.chunk.js": "/reall-niggaa/static/js/488.0bb960fd.chunk.js",
+    "index.html": "/reall-niggaa/index.html",
+    "main.32e904b6.css.map": "/reall-niggaa/static/css/main.32e904b6.css.map",
+    "main.e98a32b2.js.map": "/reall-niggaa/static/js/main.e98a32b2.js.map",
+    "488.0bb960fd.chunk.js.map": "/reall-niggaa/static/js/488.0bb960fd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.32e904b6.css",
+    "static/js/main.e98a32b2.js"
+  ]
+}
