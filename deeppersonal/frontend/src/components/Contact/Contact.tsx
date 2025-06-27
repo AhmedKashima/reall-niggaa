@@ -158,27 +158,54 @@ const Contact = ({ about, lang }: ContactProps) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await fetch('http://localhost:8000/api/contact/', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(formData)
+  //     });
+
+  //     if (res.ok) {
+  //       setStatus('success');
+  //       setFormData({ name: '', email: '', message: '' });
+  //     } else {
+  //       setStatus('error');
+  //     }
+  //   } catch (err) {
+  //     setStatus('error');
+  //   }
+  // };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     try {
       const res = await fetch('http://localhost:8000/api/contact/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(formData)
       });
-
+  
+      const data = await res.json(); // Try to parse response
+      console.log('Response:', data); // Log response
+  
       if (res.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
       } else {
+        console.error('Server error:', data);
         setStatus('error');
       }
     } catch (err) {
+      console.error('Network error:', err);
       setStatus('error');
     }
   };
-
   return (
     <section id="contact" className="py-16">
       <h2 className="text-3xl font-bold mb-12 text-center">{t.contact}</h2>

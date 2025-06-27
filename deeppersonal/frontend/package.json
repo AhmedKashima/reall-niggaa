@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AhmedKashima.github.io/reall-niggaa",
+  "homepage": "/reall-niggaa",
   "proxy": "http://localhost:8000",
   "dependencies": {
     "framer-motion": "^10.16.4",
@@ -14,7 +14,7 @@
     "web-vitals": "^3.3.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "react-app-rewired start --public-url /reall-niggaa/ --host 0.0.0.0",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
