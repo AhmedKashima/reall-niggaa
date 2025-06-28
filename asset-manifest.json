@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/reall-niggaa/static/css/main.32e904b6.css",
-    "main.js": "/reall-niggaa/static/js/main.638fba14.js",
+    "main.css": "/reall-niggaa/static/css/main.820151b5.css",
+    "main.js": "/reall-niggaa/static/js/main.6fba45a5.js",
     "static/js/488.0bb960fd.chunk.js": "/reall-niggaa/static/js/488.0bb960fd.chunk.js",
     "index.html": "/reall-niggaa/index.html",
-    "main.32e904b6.css.map": "/reall-niggaa/static/css/main.32e904b6.css.map",
-    "main.638fba14.js.map": "/reall-niggaa/static/js/main.638fba14.js.map",
+    "main.820151b5.css.map": "/reall-niggaa/static/css/main.820151b5.css.map",
+    "main.6fba45a5.js.map": "/reall-niggaa/static/js/main.6fba45a5.js.map",
     "488.0bb960fd.chunk.js.map": "/reall-niggaa/static/js/488.0bb960fd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.32e904b6.css",
-    "static/js/main.638fba14.js"
+    "static/css/main.820151b5.css",
+    "static/js/main.6fba45a5.js"
   ]
 }
