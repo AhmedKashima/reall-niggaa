@@ -4184,8 +4184,10 @@ function App() {
 
   useEffect(() => {
     // axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/about/`)
-    const apiUrl = process.env.REACT_APP_API_URL || ''; // Fallback to proxy in dev
-    axios.get(`${apiUrl}/api/about/`)
+    // const apiUrl = process.env.REACT_APP_API_URL || ''; // Fallback to proxy in dev
+    // axios.get(`${apiUrl}/api/about/`)
+    axios.get(`${process.env.PUBLIC_URL}/about.json`)
+
       .then((res) => setAbout(res.data))
       .catch((err) => console.error(err));
     
