@@ -51,7 +51,7 @@ const About = ({ about, lang }: AboutProps) => {
         viewport={{ once: true }}
         variants={container}
       >
-        <motion.div variants={item} className="flex-shrink-0">
+        {/* <motion.div variants={item} className="flex-shrink-0">
           <div className="relative">
             <img
               src={`http://localhost:8000${about.photo}`}
@@ -62,7 +62,20 @@ const About = ({ about, lang }: AboutProps) => {
               {lang === 'ru' ? 'Full-stack' : 'Full-stack'}
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
+        <motion.div variants={item} className="flex-shrink-0">
+  <div className="relative">
+    <img
+      src={about.photo}
+      alt="Profile"
+      className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-blue-400 shadow-lg"
+    />
+    <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
+      {lang === 'ru' ? 'Full-stack' : 'Full-stack'}
+    </div>
+  </div>
+</motion.div>
+
         
         <motion.div variants={item} className="flex-grow">
           <h2 className="text-3xl font-bold mb-6">{lang === 'ru' ? 'Обо мне' : 'About'}</h2>

@@ -87,7 +87,7 @@ def about_me(request):
     data = {
         "name": "Ahmed Kashima",
         "bio": "Я full-stack разработчик, люблю Python, React и делать крутые вещи.",
-        "photo": "/media/profile.png",
+        "photo": "/home/ahmedkashima/Desktop/reall-niggaa/deeppersonal/frontend/public/media/profile.png",
         "cv": "/media/ahmed_cv.pdf",
         "contacts": {
             "email": "kashimaahmed@gmail.com",

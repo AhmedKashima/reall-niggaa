@@ -1,0 +1,115 @@
+.nav {
+  background: #387ef6;
+  padding: 10px 20px;
+  border-radius: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.nav__wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav__link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav__link--cart {
+  background: #fff;
+  color: #387ef6;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.nav__mobile-wrapper {
+  display: none;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.nav__mobile-target {
+  background: white;
+  height: 3px;
+  width: 100%;
+  position: relative;
+}
+
+.nav__mobile-target::before,
+.nav__mobile-target::after {
+  content: '';
+  position: absolute;
+  background: white;
+  height: 3px;
+  width: 100%;
+  left: 0;
+}
+
+.nav__mobile-target::before {
+  top: -8px;
+}
+
+.nav__mobile-target::after {
+  bottom: -8px;
+}
+
+.nav__mobile-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: #387ef6;
+  padding: 20px;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+}
+
+.nav__mobile-wrapper.active .nav__mobile-menu {
+  display: flex;
+}
+
+.nav__mobile-wrapper.active .nav__mobile-target {
+  transform: rotate(45deg);
+}
+
+.nav__mobile-wrapper.active .nav__mobile-target::before {
+  display: none;
+}
+
+.nav__mobile-wrapper.active .nav__mobile-target::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+/* 📱 Адаптив */
+@media (max-width: 768px) {
+  .nav__links,
+  .nav__cart {
+    display: none;
+  }
+
+  .nav__mobile-wrapper {
+    display: flex;
+  }
+}
+

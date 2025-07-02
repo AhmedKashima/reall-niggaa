@@ -60,6 +60,80 @@
 
 
 
+// import { motion } from 'framer-motion';
+
+// interface HeaderProps {
+//   lang: 'ru' | 'en';
+//   activeSection: string;
+//   setLang: (lang: 'ru' | 'en') => void;
+// }
+
+// const Header = ({ lang, activeSection, setLang }: HeaderProps) => {
+//   const t = {
+//     home: { ru: 'Главная', en: 'Home' },
+//     about: { ru: 'Обо мне', en: 'About' },
+//     experience: { ru: 'Опыт', en: 'Experience' },
+//     services: { ru: 'Услуги', en: 'Services' },
+//     skills: { ru: 'Навыки', en: 'Skills' },
+//     portfolio: { ru: 'Портфолио', en: 'Portfolio' },
+//     resume: { ru: 'Резюме', en: 'CV' },  // Changed to lowercase to match usage
+//     education: { ru: 'Образование', en: 'Education' },  // Changed to lowercase
+//     contact: { ru: 'Контакты', en: 'Contact' },
+//   };
+
+//   // Include ALL navigation items in the correct order
+//   const navigationItems = [
+//     'home',
+//     'about',
+//     'skills',
+//     'experience',
+//     'education',  // Added
+//     'services',
+//     'portfolio',
+//     'resume',     // Added
+//     'contact'
+//   ];
+
+//   return (
+//     <header className="fixed top-0 left-0 w-full bg-gray-900/80 backdrop-blur-sm shadow-md z-50">
+//       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+//         <div className="flex items-center justify-between h-16">
+//           <div className="text-white text-xl font-bold">Ahmed Kashima</div>
+          
+//           <div className="hidden md:flex items-center space-x-6">
+//             {navigationItems.map((section) => (
+//               <a
+//                 key={section}
+//                 href={`#${section}`}
+//                 className={`transition ${
+//                   activeSection === section 
+//                     ? 'text-blue-400 font-medium' 
+//                     : 'text-gray-300 hover:text-white'
+//                 }`}
+//               >
+//                 {t[section as keyof typeof t][lang]}
+//               </a>
+//             ))}
+            
+//             <motion.button
+//               onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
+//               className="text-gray-300 hover:text-white transition"
+//               whileHover={{ scale: 1.1 }}
+//               whileTap={{ scale: 0.95 }}
+//             >
+//               {lang === 'ru' ? 'EN' : 'RU'}
+//             </motion.button>
+//           </div>
+//         </div>
+//       </nav>
+//     </header>
+//   );
+// };
+
+// export default Header;
+
+
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface HeaderProps {
@@ -69,6 +143,8 @@ interface HeaderProps {
 }
 
 const Header = ({ lang, activeSection, setLang }: HeaderProps) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const t = {
     home: { ru: 'Главная', en: 'Home' },
     about: { ru: 'Обо мне', en: 'About' },
@@ -76,45 +152,37 @@ const Header = ({ lang, activeSection, setLang }: HeaderProps) => {
     services: { ru: 'Услуги', en: 'Services' },
     skills: { ru: 'Навыки', en: 'Skills' },
     portfolio: { ru: 'Портфолио', en: 'Portfolio' },
-    resume: { ru: 'Резюме', en: 'CV' },  // Changed to lowercase to match usage
-    education: { ru: 'Образование', en: 'Education' },  // Changed to lowercase
+    resume: { ru: 'Резюме', en: 'CV' },
+    education: { ru: 'Образование', en: 'Education' },
     contact: { ru: 'Контакты', en: 'Contact' },
   };
 
-  // Include ALL navigation items in the correct order
   const navigationItems = [
-    'home',
-    'about',
-    'skills',
-    'experience',
-    'education',  // Added
-    'services',
-    'portfolio',
-    'resume',     // Added
-    'contact'
+    'home', 'about', 'skills', 'experience',
+    'education', 'services', 'portfolio', 'resume', 'contact'
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-gray-900/80 backdrop-blur-sm shadow-md z-50">
+    <header className="fixed top-0 left-0 w-full bg-gray-900/80 backdrop-blur-md shadow-md z-50">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="text-white text-xl font-bold">Ahmed Kashima</div>
-          
+
+          {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-6">
             {navigationItems.map((section) => (
               <a
                 key={section}
                 href={`#${section}`}
                 className={`transition ${
-                  activeSection === section 
-                    ? 'text-blue-400 font-medium' 
+                  activeSection === section
+                    ? 'text-blue-400 font-medium'
                     : 'text-gray-300 hover:text-white'
                 }`}
               >
                 {t[section as keyof typeof t][lang]}
               </a>
             ))}
-            
             <motion.button
               onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
               className="text-gray-300 hover:text-white transition"
@@ -124,7 +192,60 @@ const Header = ({ lang, activeSection, setLang }: HeaderProps) => {
               {lang === 'ru' ? 'EN' : 'RU'}
             </motion.button>
           </div>
+
+          {/* Mobile menu toggle */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-white focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {menuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile nav */}
+        {menuOpen && (
+          <div className="md:hidden flex flex-col space-y-4 py-4">
+            {navigationItems.map((section) => (
+              <a
+                key={section}
+                href={`#${section}`}
+                className={`block px-4 transition ${
+                  activeSection === section
+                    ? 'text-blue-400 font-medium'
+                    : 'text-gray-300 hover:text-white'
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {t[section as keyof typeof t][lang]}
+              </a>
+            ))}
+            <motion.button
+              onClick={() => {
+                setLang(lang === 'ru' ? 'en' : 'ru');
+                setMenuOpen(false);
+              }}
+              className="text-gray-300 hover:text-white px-4 transition"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {lang === 'ru' ? 'EN' : 'RU'}
+            </motion.button>
+          </div>
+        )}
       </nav>
     </header>
   );
